@@ -17,11 +17,22 @@
     </head>
     <body>
         <main class="container-fluid py-5 text-center">
-
+            <form action="/playgame" method="post">
+                <h5>Choice 1</h5>
+                <h6>{{ choice1 }}</h6>
+                <input type="hidden" name="answer" value="{{ choice1 }}">
+                <input type="hidden" name="other" value="{{ choice2 }}">
+                <input type="submit" value="$$$">
+            </form>
+                <br><hr><br>
+            <form action="/playgame" method="post">
+                <h5>Choice 2</h5>
+                <h6>{{ choice2 }}</h6>
+                <input type="hidden" name="other" value="{{ choice1 }}">
+                <input type="hidden" name="answer" value="{{ choice2 }}">
+                <input type="submit" value="$$$">
+            </form>
         </main>
 
-        <footer class="mb-5 small text-center text-muted">
-            Data provided by <a href="https://iexcloud.io/">IEX</a>
-        </footer>
     </body>
 </html>
