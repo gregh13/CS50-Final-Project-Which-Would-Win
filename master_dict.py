@@ -22,16 +22,9 @@ def stock_check(symbol):
     # Parse response
     try:
         quote = response.json()
-        print(f"\n\nQUOTE:\n\n{quote}\n\n")
-        return {
-            symbol: quote["marketCap"],
-        }
+        return {symbol: quote}
     except (KeyError, TypeError, ValueError):
-        try:
-            quote = response.json()
-            return {symbol: quote}
-        except:
-            return None
+        return None
 
 
 def billionaire_check():
@@ -47,7 +40,7 @@ def billionaire_check():
     print("\nBillionaire Data Processing:")
     for result in results:
         wealth = result["finalWorth"]
-        fortune = float(wealth) * 1000000
+        fortune = int(float(wealth) * 1000000)
         dict[result["personName"]] = fortune
     print(dict)
     return dict
@@ -67,7 +60,7 @@ def crypto_check():
     for result in results["data"]:
         cap = result["market_cap_usd"]
         total = round(float(cap))
-        dict[results["name"]] = total
+        dict[result["name"]] = total
     print(dict)
     return dict
 
@@ -76,12 +69,12 @@ stock_caps = {}
 billionaires = {}
 cryptos = {}
 
+print(stocks)
 # Look up current stock price to get accurate marketcap valuations
 for symbol in stocks:
     m_cap = stock_check(symbol)
-    print(f"\nreturned value:\n{m_cap}\n")
     # creates new dictionary with {company name: market cap}
-    stock_caps[stocks["symbol"]] = m_cap[symbol]
+    stock_caps[stocks[symbol]] = m_cap[symbol]
 print(stock_caps)
 
 # Look up current net worth of top 10 billionaires
