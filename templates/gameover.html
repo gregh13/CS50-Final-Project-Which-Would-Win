@@ -17,11 +17,17 @@
     </head>
     <body>
         <main class="container-fluid py-5 text-center">
-
+            <h3>GAME OVER :/</h3>
+            <br>
+            <h5>Your Score: {{ score }}</h5>
+            <br>
+            <form action="/savescore" method="post">
+                <input name="name" type="text" placeholder="Name" required autofocus>
+                <input type="submit" value="Save Score">
+            </form>
+            <hr>
+            <a href="/"><button>Back to Home</button></a>
         </main>
 
-        <footer class="mb-5 small text-center text-muted">
-            Data provided by <a href="https://iexcloud.io/">IEX</a>
-        </footer>
     </body>
 </html>
