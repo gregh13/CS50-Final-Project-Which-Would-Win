@@ -59,7 +59,11 @@ man_made = {
     "30 Burj Khalifas (Tallest Building)": 45000000000,
     "Most Expensive Airport (Osaka, Japan)": 29000000000,
     "ALL of the Royal Caribbean Cruise Ships": 25000000000,
-    "The Channel Tunnel (UK<-->FR)": 22400000000
+    "The Channel Tunnel (UK<-->FR)": 22400000000,
+    "Largest Diamond Mine Reserve Valuation": 604000000000,
+    "1 Trillion Slices of Kraft Singles Cheese": 208300000000,
+    "ALL of United Airlines Airplanes": 108000000000,
+    "100 Million Years of Netflix Subscription": 37176000000
 }
 
 

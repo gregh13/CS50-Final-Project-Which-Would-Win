@@ -45,6 +45,8 @@ master_dictionary = {
     '5 of the Most Expensive Aircraft Carrier': 65000000000, '200,000 Lambos': 60000000000,
     '30 Burj Khalifas (Tallest Building)': 45000000000, 'Most Expensive Airport (Osaka, Japan)': 29000000000,
     'ALL of the Royal Caribbean Cruise Ships': 25000000000, 'The Channel Tunnel (UK<-->FR)': 22400000000,
+    "Largest Diamond Mine (By Reserve)": 604000000000, "1 Trillion Slices of Kraft Singles Cheese": 208300000000,
+    "ALL of United Airlines Airplanes": 108000000000, "100 Million Years of Netflix Subscription": 37176000000,
     'Apple': 2707761004480, 'Microsoft': 2140564125101, 'Google': 80898990179, 'Amazon': 1432777709604,
     'Tesla': 898146518998, 'Meta Platforms': 506556482719, 'Visa': 465220320000, 'Exxon Mobil': 388382026331,
     'Coca-Cola': 273403056380, 'McDonald': 190756774025, 'AT&T': 128553040000, 'Netflix': 107223648442,
@@ -143,9 +145,9 @@ def savescore():
 
     # Save score to database
     new_score = Highscores(name=name,
-                score=score,
-                timestamp=timestamp
-                )
+                           score=score,
+                           timestamp=timestamp
+                           )
     db.session.add(new_score)
     db.session.commit()
 
