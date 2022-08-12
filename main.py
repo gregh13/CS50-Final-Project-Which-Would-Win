@@ -49,26 +49,49 @@ def index():
     # Clear user session before start of game
     session.clear()
 
-    highscores = []
+    highscores = [22, 8, 7, 6, 1]
     if request.method == "POST":
+
+        # Clear out any previous store values
+        session.clear()
+
         # Start Game
         order = []
+        session["counter"] = 0
+        session["score"] = 0
+
         # randomize which choices get called, protecting against repeats
         for key in master_dictionary:
             order.append(key)
         random.shuffle(order)
         session["order"] = order
+
+        # Debugging
         print("\nsession list")
         print(session["order"])
+        for key in session:
+            print(f"Key: {key}  Value: {session[key]}")
 
-
-
-
+        choice1 = session["order"][session["counter"]]
+        session["counter"] += 1
+        choice2 = session["order"][session["counter"]]
+        session["counter"] += 1
+        return render_template("playgame.html", choice1=choice1, choice2=choice2)
     return render_template("index.html", highscores=highscores)
 
-@app.route("/playgame", methods=["POST"])
+
+@app.route("/playgame", methods=["GET", "POST"])
 def playgame():
-    pass
+    if request.method == "POST":
+        print("POST REQUEST")
+        # Check users answers
+        answer = request.form.get("answer")
+        other = request.form.get("other")
+        if answer or other not in master_dictionary:
+            return
+        return render_template("playgame.html")
+    print("\nGET REQUEST\n")
+    return render_template("playgame.html")
 
 @app.route("/gameover", methods=["POST"])
 def gameover():
