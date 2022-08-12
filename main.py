@@ -1,9 +1,38 @@
 import random
-from cs50 import SQL
+import os
+import datetime
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
 
 # from master_dict import master_dictionary
+app = Flask(__name__)
+
+# Configure app and sessions
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+# Configure Postgres Database connected with Heroku
+uri = os.getenv("DATABASE_URL")
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
+# Create Database Model
+class Highscores(db.Model):
+    __tablename__ = 'highscores'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+    timestamp = db.Column(db.String(100), nullable=False)
+
+
+db.create_all()
 
 master_dictionary = {
     'Japan': 4912150000000, 'Germany': 4256540000000, 'United Kingdom': 3376000000000, 'India': 3534740000000,
@@ -20,28 +49,18 @@ master_dictionary = {
     'Tesla': 898146518998, 'Meta Platforms': 506556482719, 'Visa': 465220320000, 'Exxon Mobil': 388382026331,
     'Coca-Cola': 273403056380, 'McDonald': 190756774025, 'AT&T': 128553040000, 'Netflix': 107223648442,
     'Starbucks': 100133598000, 'Target': 78642911645, 'Airbnb': 73197432000, 'Ford': 62518771547, 'Dell': 34462400000,
-    'Zoo': 30905917284, 'Elon Musk': 255940425000, 'Bernard Arnault & family': 174656024000, 'Jeff Bezos': 165114752000,
+    'Zoom': 30905917284, "Kellog's": 25680000000, "American Airlines": 9740000000, 'Elon Musk': 255940425000,
+    'Bernard Arnault & family': 174656024000, 'Jeff Bezos': 165114752000,
     'Gautam Adani & family': 130849543000, 'Bill Gates': 113133936000, 'Larry Ellison': 106393052000,
     'Warren Buffett': 102948495000, 'Larry Page': 101384351000, 'Sergey Brin': 98284195000,
     'Mukesh Ambani': 95705176000, 'Bitcoin': 457507207036, 'Ethereum': 229595181591, 'Tether': 66110192252,
     'USD Coin': 54252182355, 'Binance Coin': 53809039092
 }
 
-app = Flask(__name__)
-
-# Configure app and sessions
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
-
-# Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///moneymatters.db")
-
-# MAKE TABLES
-# CREATE TABLE ............
-
-print(master_dictionary)
+LIST_LENGTH = len(master_dictionary)
+# Since questions require two choices, if list length is odd, take off one for more accurate counter check later on
+if LIST_LENGTH % 2 != 0:
+    LIST_LENGTH -= 1
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -49,7 +68,6 @@ def index():
     # Clear user session before start of game
     session.clear()
 
-    highscores = [22, 8, 7, 6, 1]
     if request.method == "POST":
 
         # Clear out any previous store values
@@ -66,36 +84,72 @@ def index():
         random.shuffle(order)
         session["order"] = order
 
-        # Debugging
-        print("\nsession list")
-        print(session["order"])
-        for key in session:
-            print(f"Key: {key}  Value: {session[key]}")
-
+        # Grab two choices for user's first round and add to counter
         choice1 = session["order"][session["counter"]]
         session["counter"] += 1
         choice2 = session["order"][session["counter"]]
         session["counter"] += 1
+
         return render_template("playgame.html", choice1=choice1, choice2=choice2)
+
+    # might need to add .amount before .desc()
+    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.scores.desc())
+    print(highscores)
     return render_template("index.html", highscores=highscores)
 
 
 @app.route("/playgame", methods=["GET", "POST"])
 def playgame():
     if request.method == "POST":
-        print("POST REQUEST")
         # Check users answers
         answer = request.form.get("answer")
         other = request.form.get("other")
-        if answer or other not in master_dictionary:
-            return
-        return render_template("playgame.html")
+
+        # Protects against bugs or intentional client-side changes
+        if answer not in master_dictionary or other not in master_dictionary:
+            return render_template("404.html")
+
+        if master_dictionary[answer] >= master_dictionary[other]:
+            # Correct Answer!
+            session["score"] += 1
+
+            # Check if user has reached the end of the list
+            if session["counter"] >= LIST_LENGTH:
+                return render_template("winner.html")
+
+            # Set up for next question
+            choice1 = session["order"][session["counter"]]
+            session["counter"] += 1
+            choice2 = session["order"][session["counter"]]
+            session["counter"] += 1
+            return render_template("playgame.html", choice1=choice1, choice2=choice2)
+
+        # Wrong Answer
+        score = session["score"]
+        return render_template("gameover.html", score=score)
+
     print("\nGET REQUEST\n")
     return render_template("playgame.html")
 
-@app.route("/gameover", methods=["POST"])
-def gameover():
-    pass
+
+@app.route("/savescore", methods=["POST"])
+def savescore():
+    timestamp = datetime.datetime.now()
+    score = session["score"]
+    name = request.form.get("name")
+    if not name:
+        # Means client side changed 'required' in input html
+        name = "Nooblet"
+
+    # Save score to database
+    new_score = Highscores(name=name,
+                score=score,
+                timestamp=timestamp
+                )
+    db.session.add(new_score)
+    db.session.commit()
+
+    return redirect("/")
 
 
 if (__name__) == ("__main__"):
