@@ -44,8 +44,9 @@ stocks = {
     "ABNB": "Airbnb",
     "F": "Ford",
     "DELL": "Dell",
-    "ZM": "Zoo"
-}
+    "ZM": "Zoom",
+    "K": "Kellog's",
+    "AAL": "American Airlines"}
 
 # List of 10 insanely expensive man-made objects/projects
 man_made = {
