@@ -143,6 +143,10 @@ def playgame():
 
         # Wrong Answer
         score = session["score"]
+
+        # Clear user session to prevent going to previous page and continuing game (aka cheating)
+        session.clear()
+
         return render_template("gameover.html", score=score)
     return render_template("playgame.html")
 

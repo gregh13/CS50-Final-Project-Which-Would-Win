@@ -35,3 +35,53 @@
 
     </body>
 </html>
+
+
+
+ </head>
+
+    <body class = "light-blue-color text-center">
+        <br>
+        <br>
+        <h1>!!Winner!!</h1>
+        <div class="text-center soft-white margin-gh rounded-gh">
+            <div class="text-center" style="margin: 0 7%;">
+                <br>
+                <br>
+                <h3>Final Score: {{ score }}</h3>
+                <br>
+                <h5>You reached the end, you got them all right, you beat the game!!</h5>
+                <br>
+                <p>But remember, the matches are random each time. Some paths are easier than others.
+                Was it luck or was it skill? Play again to prove it.</p>
+                <br>
+               <div class="margin-gh">
+                   <form class="row" action="/savescore" method="post">
+                        <div class="col-auto" style="padding-left: 25%;">
+                            <input class="form-control" name="name" type="text" placeholder="Name" required autofocus>
+                        </div>
+                        <div class="col-auto">
+                            <input class="btn btn-primary input-bg" type="submit" value="Save Score">
+                        </div>
+                   </form>
+               </div>
+                <br>
+                <hr>
+                <br><br>
+                  <div class="row justify-content-evenly" style="margin: 0 30%;">
+                    <div class="col-6">
+                      <a href="/"><button class="btn btn-primary">Back to Home</button></a>
+                    </div>
+                    <div class="col-6">
+                       <form action="/" method="post">
+                        <input type="submit" class="btn btn-primary" value="Play Again">
+                       </form>
+                    </div>
+                  </div>
+                <br><br>
+            </div>
+            <br><br>
+        </div>
+    </body>
+</html>
+
