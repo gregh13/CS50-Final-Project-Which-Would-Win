@@ -146,7 +146,6 @@ def playgame():
         score = session["score"]
         return render_template("gameover.html", score=score)
 
-    print("\nGET REQUEST\n")
     return render_template("playgame.html")
 
 

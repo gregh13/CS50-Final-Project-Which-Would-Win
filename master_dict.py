@@ -13,7 +13,8 @@ if not os.environ.get("API_KEY"):
 API_KEY = os.environ.get("API_KEY")
 timestamp = datetime.datetime.now()
 timestamp = timestamp.strftime('%m/%d/%Y')
-print(timestamp)
+
+# For debug testing
 random_num = random.randint(1, 2222)
 
 
@@ -122,8 +123,6 @@ payload = stock_caps | billionaires | cryptos
 # Test whether main.py receives updated table info
 payload["random_num"] = random_num
 
-
-print(payload)
 # Clear table values
 try:
     num_rows_deleted = db.session.query(Marketdata).delete()
@@ -135,9 +134,6 @@ except:
 objects = []
 for key in payload:
     objects.append(Marketdata(name=key, value=payload[key], timestamp=timestamp))
-
-
-print(objects)
 
 db.session.bulk_save_objects(objects)
 db.session.commit()
