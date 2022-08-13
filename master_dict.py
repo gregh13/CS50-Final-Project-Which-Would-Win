@@ -8,15 +8,23 @@ import random
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
+API_KEY = os.environ.get("API_KEY")
+
 random_num = random.randint(1, 2222)
 
 
 def stock_check(symbol):
     """Gets current stock data for symbol."""
-
+    if symbol == "GOOG":
+        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={API_KEY}"
+        response = requests.get(url)
+        response.raise_for_status()
+        debug = response.json()
+        print("\nGOOGLE QUOTE:\n")
+        print(debug)
+        print("\n\n")
     try:
-        api_key = os.environ.get("API_KEY")
-        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote/marketCap?token={api_key}"
+        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote/marketCap?token={API_KEY}"
         response = requests.get(url)
         response.raise_for_status()
     except requests.RequestException:
