@@ -20,21 +20,18 @@
         <br>
         <br>
         <h1>Game Over :/</h1>
-        <br>
         <div class="text-center soft-white margin-gh rounded-gh">
             <div class="text-center" style="margin: 0 7%;">
                 <br>
                 <br>
-
                 <h3>Final Score: {{ score }}</h3>
                 <br>
-                <br>
-               <div class="row justify-content-evenly" style="margin: 0 15%;">
-                   <form action="/savescore" method="post">
-                        <div class="col-4">
-                            <input class="form-control" style="width: 30%;" name="name" type="text" placeholder="Name" required autofocus>
+               <div class="margin-gh">
+                   <form class="row g-2" action="/savescore" method="post">
+                        <div class="col-auto">
+                            <input class="form-control" name="name" type="text" placeholder="Name" required autofocus>
                         </div>
-                        <div class="col-4">
+                        <div class="col-auto">
                             <input class="btn btn-primary" type="submit" value="Save Score">
                         </div>
                    </form>
