@@ -137,7 +137,7 @@ for key in payload:
 
 print(objects)
 
-db.bulk_save_objects(objects)
+db.session.bulk_save_objects(objects)
 db.commit()
 
 
