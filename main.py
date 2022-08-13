@@ -85,7 +85,8 @@ def index():
         print("\nStart query without .all()\n")
         print(all_rows)
         for row in all_rows:
-            print(row)
+            print(row.name)
+            print(row.value)
         print("\n END! \n")
 
         # Test heroku run/update process
@@ -93,7 +94,8 @@ def index():
         print("\nStart query WITH .all()\n")
         print(all_rowss)
         for row in all_rowss:
-            print(row)
+            print(row.name)
+            print(row.value)
         print("\n END! \n")
 
         # Start Game
