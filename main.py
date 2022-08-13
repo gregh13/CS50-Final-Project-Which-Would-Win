@@ -72,7 +72,7 @@ master_dictionary = countries | man_made
 
 
 @app.errorhandler(404)
-def not_found():
+def not_found(error):
     return render_template("404.html")
 
 
