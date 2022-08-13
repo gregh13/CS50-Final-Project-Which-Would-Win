@@ -112,7 +112,7 @@ def index():
         return render_template("playgame.html", choice1=choice1, choice2=choice2)
 
     # might need to add .amount before .desc()
-    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc())
+    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(10)
     return render_template("index.html", highscores=highscores)
 
 

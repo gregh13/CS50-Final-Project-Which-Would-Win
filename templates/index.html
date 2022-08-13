@@ -21,25 +21,28 @@
                 <br>
                 <h2>How it works</h2>
                 <br>
-                <h5>You'll be presented with two choices</h5>
-                <h5>You must choose which option is "worth more".</h5>
-                <div style="margin: 0 22%;">
+                <h5>You'll be presented with two choices. Choose which option is "worth more".</h5>
+                <div style="margin: 0 18%; text-align: left">
                 <p>These choices could be a country, company, billionaire, cryptocurrency, or man-made object/project.
                     Thus you will be comparing annual GDP, market cap valuations, net worth, and cost to make.
                     In the context of money, it boils down to the question "Which would win?".
                     Every correct answers adds to your score, but one wrong guess and the game ends. Good Luck!</p>
                 </div>
-                <br>
                 <form action="/" method="post">
                     <input type="submit" class="btn light-blue-color" value="Start Game">
                 </form>
                 <hr>
             </div>
             <div class="margin-gh">
-                <h4>Highscores</h4>
-                <br>
                 <div style="margin: 0 22%">
                     <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Highscore</th>
+                            </tr>
+                        </thead>
                         <tbody>
                         {% for score in highscores %}
                             <tr>
