@@ -25,14 +25,13 @@
                 <br>
                 <br>
                 <h3>Final Score: {{ score }}</h3>
-                <br>
                <div class="margin-gh">
-                   <form class="row g-2" action="/savescore" method="post">
-                        <div class="col-auto">
-                            <input class="form-control" name="name" type="text" placeholder="Name" required autofocus>
+                   <form class="row" action="/savescore" method="post">
+                        <div class="col-auto" style="padding-left: 25%;">
+                            <input class="form-control form-control-lg" name="name" type="text" placeholder="Name" required autofocus>
                         </div>
                         <div class="col-auto">
-                            <input class="btn btn-primary" type="submit" value="Save Score">
+                            <input class="btn btn-primary input-bg" type="submit" value="Save Score">
                         </div>
                    </form>
                </div>
@@ -41,11 +40,11 @@
                 <br><br>
                   <div class="row justify-content-evenly" style="margin: 0 22%;">
                     <div class="col-4">
-                      <a href="/"><button class="btn btn-primary">Back to Home</button></a>
+                      <a href="/"><button class="btn btn-primary btn-sm">Back to Home</button></a>
                     </div>
                     <div class="col-4">
                        <form action="/" method="post">
-                        <input type="submit" class="btn btn-primary" value="Play Again">
+                        <input type="submit" class="btn btn-primary btn-sm" value="Play Again">
                        </form>
                     </div>
                   </div>
