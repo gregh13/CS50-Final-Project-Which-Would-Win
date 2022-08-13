@@ -91,6 +91,10 @@ master_dictionary = countries | man_made | stock_caps | billionaires | cryptos
 
 # Testing for heroku run/update process
 master_dictionary["random_number"] = random_num
+print(f"Random num: {random_num}")
+print(master_dictionary["random_number"])
+print("INNER dictionary")
+print(master_dictionary)
 
 
 

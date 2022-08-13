@@ -72,7 +72,7 @@ def index():
 
     if request.method == "POST":
         # Test heroku run/update process
-        print("\nDictionary:\n")
+        print("\nSTART GAME Dictionary:\n")
         print(master_dictionary)
         print("\n")
 
