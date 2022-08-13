@@ -29,17 +29,22 @@
                 <br>
                 <br>
             <form action="/savescore" method="post">
-                <input class="form-control" name="name" type="text" placeholder="Name" required autofocus>
+                <input class="form-control" width="40%" name="name" type="text" placeholder="Name" required autofocus>
                 <input class="btn btn-primary" type="submit" value="Save Score">
             </form>
             <br>
             <hr>
             <br><br>
-            <a href="/"><button class="btn btn-primary">Back to Home</button></a>
-                <span style="padding: 5% 0;"></span>
-                <form action="/" method="post">
-                    <input type="submit" class="btn light-blue-color" value="Play Again">
-                </form>
+                  <div class="row justify-content-evenly">
+                    <div class="col-4">
+                      <a href="/"><button class="btn btn-primary">Back to Home</button></a>
+                    </div>
+                    <div class="col-4">
+                       <form action="/" method="post">
+                        <input type="submit" class="btn btn-primary" style="height: 22px; width: 22px;" value="Play Again">
+                       </form>
+                    </div>
+                  </div>
                 <br><br><br>
             </div>
             <br><br><br><br>
