@@ -82,6 +82,9 @@ def index():
     session.clear()
 
     if request.method == "POST":
+        # Set default value
+        session["gameover"] = "false"
+
         # Grab current data from db
         all_rows = db.session.query(Marketdata).all()
 
@@ -123,6 +126,13 @@ def index():
 @app.route("/playgame", methods=["GET", "POST"])
 def playgame():
     if request.method == "POST":
+        # Get users score
+        score = session["score"]
+
+        # Protects against using back button in browser to cheat
+        if session["gameover"] == "true":
+            return render_template("gameover.html", score=score)
+
         # Check users answers
         answer = request.form.get("answer")
         other = request.form.get("other")
@@ -132,9 +142,10 @@ def playgame():
             return render_template("404.html")
 
         if session["master_dictionary"][answer] >= session["master_dictionary"][other]:
-            # Correct Answer!
+            # Correct Answer! Update score values
             session["score"] += 1
             score = session["score"]
+
             # Check if user has reached the end of the list
             if session["counter"] >= session["list_length"]:
                 score = session["score"]
@@ -148,11 +159,7 @@ def playgame():
             return render_template("playgame.html", choice1=choice1, choice2=choice2, score=score)
 
         # Wrong Answer
-        score = session["score"]
-
-        # Reset user score to prevent going to previous page and continuing game (aka cheating)
-        session["score"] = 0
-
+        session["gameover"] = "true"
         return render_template("gameover.html", score=score)
 
     return render_template("playgame.html")
