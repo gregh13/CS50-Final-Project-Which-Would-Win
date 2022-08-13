@@ -36,7 +36,7 @@ class Marketdata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     value = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.String(100), nullable=False)
+    timestamp = db.Column(db.String(100), nullable=False)
     image_src = db.Column(db.Text)
 
 
@@ -82,12 +82,18 @@ def index():
     if request.method == "POST":
         # Grab current data from db
         all_rows = db.session.query(Marketdata)
-        print("\nHERE!!!!!\n")
+        print("\nStart query without .all()\n")
         print(all_rows)
         for row in all_rows:
             print(row)
+        print("\n END! \n")
 
         # Test heroku run/update process
+        all_rowss = db.session.query(Marketdata).all()
+        print("\nStart query WITH .all()\n")
+        print(all_rowss)
+        for row in all_rowss:
+            print(row)
         print("\n END! \n")
 
         # Start Game
@@ -112,6 +118,10 @@ def index():
     # might need to add .amount before .desc()
     highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc())
     print(highscores)
+    print("Scores!\n")
+    for score in highscores:
+        print(score)
+    print("End\n")
     return render_template("index.html", highscores=highscores)
 
 

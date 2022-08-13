@@ -120,6 +120,7 @@ payload = stock_caps | billionaires | cryptos
 # Test whether main.py receives updated table info
 payload["random_num"] = random_num
 
+
 print(payload)
 # Clear table values
 try:

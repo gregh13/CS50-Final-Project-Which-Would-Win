@@ -31,6 +31,8 @@
             <ol>
                 {% for score in highscores %}
                     <li>{{ score }}</li>
+                    <li>{{ score[0] }}</li>
+                    <li>{{ score[1] }}</li>
                 {% endfor %}
             </ol>
 
