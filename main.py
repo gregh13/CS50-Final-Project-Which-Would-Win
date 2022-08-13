@@ -42,7 +42,7 @@ class Marketdata(db.Model):
 
 db.create_all()
 
-# Debugging mode, temporarily allow hard-code dictionary
+# Debugging mode, temporarily allow hard-code dictionary.
 master_dictionary = {
     'Japan': 4912150000000, 'Germany': 4256540000000, 'United Kingdom': 3376000000000, 'India': 3534740000000,
     'France': 2936700000000, 'Italy': 2058330000000, 'Brazil': 1833270000000, 'Canada': 2221220000000,
