@@ -2,10 +2,13 @@ import os
 import requests
 import urllib.parse
 from mm_dicts import countries, stocks, man_made
+import random
 
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
+
+random_num = random.randint(1, 2222)
 
 
 def stock_check(symbol):
@@ -64,6 +67,7 @@ def crypto_check():
     print(dict)
     return dict
 
+
 master_dictionary = {}
 stock_caps = {}
 billionaires = {}
@@ -85,9 +89,8 @@ cryptos = crypto_check()
 
 master_dictionary = countries | man_made | stock_caps | billionaires | cryptos
 
-print("\nMASTER DICTIONARY\n")
-print(master_dictionary)
-print("\n")
+# Testing for heroku run/update process
+master_dictionary["random_number"] = random_num
 
 
 

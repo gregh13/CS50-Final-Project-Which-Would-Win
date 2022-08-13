@@ -71,6 +71,10 @@ def index():
     session.clear()
 
     if request.method == "POST":
+        # Test heroku run/update process
+        print("\nDictionary:\n")
+        print(master_dictionary)
+        print("\n")
 
         # Clear out any previous store values
         session.clear()
@@ -95,7 +99,7 @@ def index():
         return render_template("playgame.html", choice1=choice1, choice2=choice2)
 
     # might need to add .amount before .desc()
-    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.scores.desc())
+    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc())
     print(highscores)
     return render_template("index.html", highscores=highscores)
 
