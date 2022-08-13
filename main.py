@@ -71,6 +71,11 @@ db.create_all()
 master_dictionary = countries | man_made
 
 
+@app.errorhandler(404)
+def not_found():
+    return render_template("404.html")
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     # Clear user session before start of game
@@ -132,7 +137,8 @@ def playgame():
             score = session["score"]
             # Check if user has reached the end of the list
             if session["counter"] >= session["list_length"]:
-                return render_template("winner.html")
+                score = session["score"]
+                return render_template("winner.html", score=score)
 
             # Set up for next question
             choice1 = session["order"][session["counter"]]
@@ -148,6 +154,7 @@ def playgame():
         session["score"] = 0
 
         return render_template("gameover.html", score=score)
+    print("\n\nBrowser Back is GET request\n\n")
     return render_template("playgame.html")
 
 

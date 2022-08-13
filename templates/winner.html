@@ -14,32 +14,7 @@
         <link href="/static/styles.css" rel="stylesheet">
 
         <title>Game Over :(</title>
-    </head>
-    <body>
-        <main class="container-fluid py-5 text-center">
-            <h3>!!Winner!!</h3>
-            <br>
-            <h6>You reached the end, you got them all right, you beat the game!</h6>
-            <h5>Your Score: {{ score }}!!!</h5>
-            <br>
-            <p>Remember, the matches are random each time though. Some paths are easier than others.
-                Did you get lucky or was it skill? Play again to prove it.</p>
-            <br>
-            <form action="/savescore" method="post">
-                <input name="name" type="text" placeholder="Name" required autofocus>
-                <input type="submit" value="Save Score">
-            </form>
-            <hr>
-            <a href="/"><button>Back to Home</button></a>
-        </main>
-
-    </body>
-</html>
-
-
-
  </head>
-
     <body class = "light-blue-color text-center">
         <br>
         <br>
@@ -52,8 +27,8 @@
                 <br>
                 <h5>You reached the end, you got them all right, you beat the game!!</h5>
                 <br>
-                <p>But remember, the matches are random each time. Some paths are easier than others.
-                Was it luck or was it skill? Play again to prove it.</p>
+                <p>But remember, the matches are random each time. Some paths are easier than others.</p>
+                <p>Was it luck or was it skill? Play again to prove it.</p>
                 <br>
                <div class="margin-gh">
                    <form class="row" action="/savescore" method="post">
@@ -78,7 +53,7 @@
                        </form>
                     </div>
                   </div>
-                <br><br>
+                <br>
             </div>
             <br><br>
         </div>
