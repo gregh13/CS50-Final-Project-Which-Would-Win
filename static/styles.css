@@ -1,7 +1,9 @@
 .margin-gh {
-    margin: 0 11%;
+    margin: 5% 11%;
 }
-
+.light-blue-color {
+    background-color: #9ec5fe;
+}
 .blue-color {
     background-color: #0d6efd;
 }
