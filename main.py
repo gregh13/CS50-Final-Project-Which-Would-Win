@@ -154,7 +154,7 @@ def playgame():
         session["score"] = 0
 
         return render_template("gameover.html", score=score)
-    print("\n\nBrowser Back is GET request\n\n")
+
     return render_template("playgame.html")
 
 
