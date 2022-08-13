@@ -21,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+db.Marketdata.marketdata.drop()
 
 # Create Database Model
 class Highscores(db.Model):
@@ -35,7 +36,7 @@ class Marketdata(db.Model):
     __tablename = "marketdata"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    value = db.Column(db.Bigint, nullable=False)
+    value = db.Column(db.BigInteger, nullable=False)
     timestamp = db.Column(db.String(100), nullable=False)
     image_src = db.Column(db.Text)
 
