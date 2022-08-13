@@ -15,23 +15,34 @@
 
         <title>Game Time!</title>
     </head>
-    <body>
-        <main class="container-fluid py-5 text-center">
-            <form action="/playgame" method="post">
-                <h5>Choice 1</h5>
-                <h6>{{ choice1 }}</h6>
-                <input type="hidden" name="answer" value="{{ choice1 }}">
-                <input type="hidden" name="other" value="{{ choice2 }}">
-                <input type="submit" value="$$$">
-            </form>
+    <body class="bluecolor">
+        <main class="container-fluid py-5 text-center margin-gh">
+            <div class="container text-center margin-gh">
+                <h2> Which Would Win?</h2>
+              <div class="row justify-content-around">
+                <div class="col-4">
+                    <form action="/playgame" method="post">
+                        <h4>{{ choice1 }}</h4>
+                        <input type="hidden" name="answer" value="{{ choice1 }}">
+                        <input type="hidden" name="other" value="{{ choice2 }}">
+                        <br>
+                        <input class="btn bluecolor" type="submit" value="Select">
+                    </form>
+                </div>
+                <div class="col-4">
+                    <form action="/playgame" method="post">
+                        <h4>{{ choice2 }}</h4>
+                        <input type="hidden" name="other" value="{{ choice1 }}">
+                        <input type="hidden" name="answer" value="{{ choice2 }}">
+                        <br>
+                        <input class="btn bluecolor" type="submit" value="Select">
+                    </form>
+                </div>
+              </div>
+            </div>
+
                 <br><hr><br>
-            <form action="/playgame" method="post">
-                <h5>Choice 2</h5>
-                <h6>{{ choice2 }}</h6>
-                <input type="hidden" name="other" value="{{ choice1 }}">
-                <input type="hidden" name="answer" value="{{ choice2 }}">
-                <input type="submit" value="$$$">
-            </form>
+
         </main>
 
     </body>

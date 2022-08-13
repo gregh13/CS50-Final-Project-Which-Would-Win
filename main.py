@@ -77,8 +77,6 @@ def index():
     session.clear()
 
     if request.method == "POST":
-        print("Before:")
-        print(master_dictionary)
         # Grab current data from db
         all_rows = db.session.query(Marketdata).all()
 
@@ -91,7 +89,7 @@ def index():
         # Start Game
         order = []
         list_length = len(master_dictionary)
-        # Since questions require two choices, if list length is odd, take off one for more accurate counter check later on
+        # Since questions require two choices, if list length is odd, take off one for more accurate counter check
         if list_length % 2 != 0:
             list_length -= 1
         session["list_length"] = list_length
