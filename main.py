@@ -40,7 +40,6 @@ class Marketdata(db.Model):
     image_src = db.Column(db.Text)
 
 
-db.Marketdata.marketdata.drop()
 db.create_all()
 
 # Debugging mode, temporarily allow hard-code dictionary
