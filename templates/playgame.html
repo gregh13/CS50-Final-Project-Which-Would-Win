@@ -19,7 +19,6 @@
         <br>
         <br>
         <h1> Which Would Win?</h1>
-
         <div class="text-center soft-white margin-gh rounded-gh">
             <div class="text-center" style="margin: 0 7%;">
                 <br>
@@ -33,6 +32,7 @@
                         <h2>{{ choice1 }}</h2>
                         <input type="hidden" name="answer" value="{{ choice1 }}">
                         <input type="hidden" name="other" value="{{ choice2 }}">
+                        <input type="hidden" name="f_con" value="{{ f_con + 1 }}">
                         <br>
                         <input class="btn btn-primary" type="submit" value="Select">
                     </form>
@@ -45,6 +45,7 @@
                         <h2>{{ choice2 }}</h2>
                         <input type="hidden" name="other" value="{{ choice1 }}">
                         <input type="hidden" name="answer" value="{{ choice2 }}">
+                        <input type="hidden" name="f_con" value="{{ f_con }}">
                         <br>
                         <input class="btn btn-primary" type="submit" value="Select">
                     </form>
