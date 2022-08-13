@@ -15,40 +15,40 @@
 
         <title>Game Time!</title>
     </head>
-    <body>
-        <div class="container-fluid light-blue-color">
-            <div class="text-center margin-gh soft-white rounded">
-                <div class="text-center margin-gh">
-                    <br><br>
-                    <h2> Which Would Win?</h2>
-                    <br>
-                    <br>
-                    <br>
-                  <div class="row justify-content-around">
-                    <div class="col-4">
-                        <form action="/playgame" method="post">
-                            <h4>{{ choice1 }}</h4>
-                            <input type="hidden" name="answer" value="{{ choice1 }}">
-                            <input type="hidden" name="other" value="{{ choice2 }}">
-                            <br>
-                            <input class="btn light-blue-color" type="submit" value="Select">
-                        </form>
-                    </div>
-                    <div class="col-4">
-                        <form action="/playgame" method="post">
-                            <h4>{{ choice2 }}</h4>
-                            <input type="hidden" name="other" value="{{ choice1 }}">
-                            <input type="hidden" name="answer" value="{{ choice2 }}">
-                            <br>
-                            <input class="btn light-blue-color" type="submit" value="Select">
-                        </form>
-                    </div>
-                  </div>
+    <body class = "light-blue-color">
+        <div class="row align-items-center text-center soft-white rounded" style="margin: 0 11%;">
+            <div class="text-center margin-gh">
+                <br><br>
+                <h2> Which Would Win?</h2>
+                <br>
+                <br>
+                <br>
+              <div class="row justify-content-around">
+                <div class="col-3">
+                    <form action="/playgame" method="post">
+                        <h3>{{ choice1 }}</h3>
+                        <input type="hidden" name="answer" value="{{ choice1 }}">
+                        <input type="hidden" name="other" value="{{ choice2 }}">
+                        <br>
+                        <input class="btn light-blue-color" type="submit" value="Select">
+                    </form>
                 </div>
-                <br><br><br>
+                  <div>
+                      <h1>vs.</h1>
+                  </div>
+                <div class="col-3">
+                    <form action="/playgame" method="post">
+                        <h3>{{ choice2 }}</h3>
+                        <input type="hidden" name="other" value="{{ choice1 }}">
+                        <input type="hidden" name="answer" value="{{ choice2 }}">
+                        <br>
+                        <input class="btn light-blue-color" type="submit" value="Select">
+                    </form>
+                </div>
+              </div>
             </div>
-            <br>
+            <br><br><br>
         </div>
-
+        <br>
     </body>
 </html>

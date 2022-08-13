@@ -15,29 +15,30 @@
 
         <title>Money Matters: Home</title>
     </head>
-    <body>
-        <div class="container-fluid light-blue-color">
-            <div class="text-center margin-gh soft-white rounded">
-                <div class="margin-gh">
-                    <br>
-                    <h3>How it works</h3>
-                    <br>
-                    <h5>You'll be presented with two choices. You must choose which option is 'worth more'.</h5>
-                    <div style="margin: 0 11%;">
-                    <p>These choices could be a country, company, billionaire, cryptocurrency, or man-made object/project.
-                        Thus you will be comparing annual GDP, market cap valuations, net worth, and cost to make.
-                        In the context of money, it boils down to the question "Which would win?".
-                        Every correct answers adds to your score, but one wrong guess and the game ends. Good Luck!</p>
-                    </div>
-                    <br>
-                    <form action="/" method="post">
-                        <input type="submit" class="btn light-blue-color" value="Start Game">
-                    </form>
-                    <hr>
+    <body class="light-blue-color">
+        <div class="text-center margin-gh soft-white rounded">
+            <div class="margin-gh">
+                <br>
+                <h2>How it works</h2>
+                <br>
+                <h5>You'll be presented with two choices</h5>
+                <h5>You must choose which option is "worth more".</h5>
+                <div style="margin: 0 22%;">
+                <p>These choices could be a country, company, billionaire, cryptocurrency, or man-made object/project.
+                    Thus you will be comparing annual GDP, market cap valuations, net worth, and cost to make.
+                    In the context of money, it boils down to the question "Which would win?".
+                    Every correct answers adds to your score, but one wrong guess and the game ends. Good Luck!</p>
                 </div>
-                <div class="margin-gh">
-                    <h4>Highscores</h4>
-                    <br>
+                <br>
+                <form action="/" method="post">
+                    <input type="submit" class="btn light-blue-color" value="Start Game">
+                </form>
+                <hr>
+            </div>
+            <div class="margin-gh">
+                <h4>Highscores</h4>
+                <br>
+                <div style="margin: 0 22%">
                     <table class="table">
                         <tbody>
                         {% for score in highscores %}
@@ -49,13 +50,13 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                    <br><br><br>
                 </div>
+                <br><br><br>
             </div>
-            <br>
-            <footer class="mb-5 small text-center text-muted">
-                Data provided by <a href="https://iexcloud.io/">IEX</a>
-            </footer>
         </div>
+        <br>
+        <footer class="mb-5 small text-center text-muted">
+            Data provided by <a href="https://iexcloud.io/">IEX</a>
+        </footer>
     </body>
 </html>
