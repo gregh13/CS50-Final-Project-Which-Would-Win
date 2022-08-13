@@ -30,9 +30,9 @@
             <h4>Highscores</h4>
             <ol>
                 {% for score in highscores %}
-                    <li>{{ score }}</li>
-                    <li>{{ score[0] }}</li>
-                    <li>{{ score[1] }}</li>
+
+                    <li>{{ score[0] }} - - - > {{ score[1] }}</li>
+
                 {% endfor %}
             </ol>
 
