@@ -83,8 +83,6 @@ def index():
         # Add data into master_dictionary
         for row in all_rows:
             master_dictionary[row.name] = row.value
-        print("\nAfter:")
-        print(master_dictionary)
 
         # Start Game
         order = []

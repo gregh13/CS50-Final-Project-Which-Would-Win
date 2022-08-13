@@ -4,7 +4,6 @@ import urllib.parse
 import datetime
 from mm_dicts import stocks
 from main import Marketdata, db
-import random
 
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
@@ -13,9 +12,6 @@ if not os.environ.get("API_KEY"):
 API_KEY = os.environ.get("API_KEY")
 timestamp = datetime.datetime.now()
 timestamp = timestamp.strftime('%m/%d/%Y')
-
-# For debug testing
-random_num = random.randint(1, 2222)
 
 
 def google_check(symbol):
@@ -118,10 +114,8 @@ billionaires = billionaire_check()
 # Look up current market cap for top 5 cryptocurrencies
 cryptos = crypto_check()
 
+# Merge dictionaries into one for easier bulk updating of db
 payload = stock_caps | billionaires | cryptos
-
-# Test whether main.py receives updated table info
-payload["random_num"] = random_num
 
 # Clear table values
 try:
