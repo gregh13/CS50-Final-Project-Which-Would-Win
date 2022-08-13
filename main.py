@@ -21,7 +21,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-db.Marketdata.marketdata.drop()
 
 # Create Database Model
 class Highscores(db.Model):
@@ -41,6 +40,7 @@ class Marketdata(db.Model):
     image_src = db.Column(db.Text)
 
 
+db.Marketdata.marketdata.drop()
 db.create_all()
 
 # Debugging mode, temporarily allow hard-code dictionary
