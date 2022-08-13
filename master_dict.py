@@ -120,6 +120,7 @@ payload = stock_caps | billionaires | cryptos
 # Test whether main.py receives updated table info
 payload["random_num"] = random_num
 
+print(payload)
 # Clear table values
 try:
     num_rows_deleted = db.session.query(Marketdata).delete()
@@ -131,6 +132,9 @@ except:
 objects = []
 for key in payload:
     objects.append(Marketdata(name=key, value=payload[key], timestamp=timestamp))
+
+
+print(objects)
 
 db.bulk_save_objects(objects)
 db.commit()

@@ -82,11 +82,13 @@ def index():
     if request.method == "POST":
         # Grab current data from db
         all_rows = db.session.query(Marketdata)
+        print("\nHERE!!!!!\n")
+        print(all_rows)
         for row in all_rows:
             print(row)
 
         # Test heroku run/update process
-
+        print("\n END! \n")
 
         # Start Game
         order = []
