@@ -19,22 +19,29 @@
     <body class = "light-blue-color text-center">
         <br>
         <br>
+        <h1>Game Over :/</h1>
+        <br>
         <div class="text-center soft-white margin-gh rounded-gh">
             <div class="text-center" style="margin: 0 7%;">
                 <br>
                 <br>
-                <h1>Game Over :/</h1>
-                <br><br>
+
                 <h3>Final Score: {{ score }}</h3>
                 <br>
                 <br>
-            <form action="/savescore" method="post">
-                <input class="form-control" style="width: 30%;" name="name" type="text" placeholder="Name" required autofocus>
-                <input class="btn btn-primary" type="submit" value="Save Score">
-            </form>
-            <br>
-            <hr>
-            <br><br>
+               <div class="row justify-content-evenly" style="margin: 0 15%;">
+                   <form action="/savescore" method="post">
+                        <div class="col-4">
+                            <input class="form-control" style="width: 30%;" name="name" type="text" placeholder="Name" required autofocus>
+                        </div>
+                        <div class="col-4">
+                            <input class="btn btn-primary" type="submit" value="Save Score">
+                        </div>
+                   </form>
+               </div>
+                <br>
+                <hr>
+                <br><br>
                   <div class="row justify-content-evenly" style="margin: 0 22%;">
                     <div class="col-4">
                       <a href="/"><button class="btn btn-primary">Back to Home</button></a>
@@ -45,9 +52,9 @@
                        </form>
                     </div>
                   </div>
-                <br><br><br>
+                <br><br>
             </div>
-            <br><br><br><br>
+            <br><br>
         </div>
     </body>
 </html>
