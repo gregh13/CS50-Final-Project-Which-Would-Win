@@ -140,7 +140,7 @@ for key in payload:
 print(objects)
 
 db.session.bulk_save_objects(objects)
-db.commit()
+db.session.commit()
 
 
 # Batch update without deleting rows option
