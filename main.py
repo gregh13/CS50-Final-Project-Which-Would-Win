@@ -93,6 +93,7 @@ def index():
         session["list_length"] = list_length
         session["counter"] = 0
         session["score"] = 0
+        score = session["score"]
         session["master_dictionary"] = master_dictionary
 
         # randomize which choices get called, protecting against repeats
@@ -107,7 +108,7 @@ def index():
         choice2 = session["order"][session["counter"]]
         session["counter"] += 1
 
-        return render_template("playgame.html", choice1=choice1, choice2=choice2)
+        return render_template("playgame.html", choice1=choice1, choice2=choice2, score=score)
 
     # might need to add .amount before .desc()
     highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(10)
@@ -128,7 +129,7 @@ def playgame():
         if session["master_dictionary"][answer] >= session["master_dictionary"][other]:
             # Correct Answer!
             session["score"] += 1
-
+            score = session["score"]
             # Check if user has reached the end of the list
             if session["counter"] >= session["list_length"]:
                 return render_template("winner.html")
@@ -138,12 +139,11 @@ def playgame():
             session["counter"] += 1
             choice2 = session["order"][session["counter"]]
             session["counter"] += 1
-            return render_template("playgame.html", choice1=choice1, choice2=choice2)
+            return render_template("playgame.html", choice1=choice1, choice2=choice2, score=score)
 
         # Wrong Answer
         score = session["score"]
         return render_template("gameover.html", score=score)
-
     return render_template("playgame.html")
 
 
