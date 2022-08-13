@@ -12,6 +12,8 @@ if not os.environ.get("API_KEY"):
 
 API_KEY = os.environ.get("API_KEY")
 timestamp = datetime.datetime.now()
+timestamp.strftime('%m/%d/%Y')
+print(timestamp)
 random_num = random.randint(1, 2222)
 
 

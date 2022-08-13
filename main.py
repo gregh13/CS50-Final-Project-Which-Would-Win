@@ -157,6 +157,7 @@ def playgame():
 @app.route("/savescore", methods=["POST"])
 def savescore():
     timestamp = datetime.datetime.now()
+    timestamp.strftime('%m/%d/%Y')
     score = session["score"]
     name = request.form.get("name")
     if not name:
