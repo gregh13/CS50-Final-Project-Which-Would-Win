@@ -1,7 +1,9 @@
 import os
 import requests
 import urllib.parse
-from mm_dicts import countries, stocks, man_made
+import datetime
+from mm_dicts import stocks
+from main import Marketdata, db
 import random
 
 # Make sure API key is set
@@ -9,20 +11,32 @@ if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
 API_KEY = os.environ.get("API_KEY")
-
+timestamp = datetime.datetime.now()
 random_num = random.randint(1, 2222)
+
+
+def google_check(symbol):
+    """Manually calculates market cap for Google since normal IEX Api route returns oddly low valuations"""
+    try:
+        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={API_KEY}"
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.RequestException:
+        return None
+
+    # Parse response
+    try:
+        quote = response.json()
+        price = float(quote["latestPrice"])
+        # Google has roughly 13 billion shares
+        market_cap = int(price * 13044000000)
+        return {symbol: market_cap}
+    except (KeyError, TypeError, ValueError):
+        return None
 
 
 def stock_check(symbol):
     """Gets current stock data for symbol."""
-    if symbol == "GOOG":
-        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={API_KEY}"
-        response = requests.get(url)
-        response.raise_for_status()
-        debug = response.json()
-        print("\nGOOGLE QUOTE:\n")
-        print(debug)
-        print("\n\n")
     try:
         url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote/marketCap?token={API_KEY}"
         response = requests.get(url)
@@ -45,16 +59,18 @@ def billionaire_check():
     try:
         response = requests.get(url)
         response.raise_for_status()
-        results = response.json()
     except requests.RequestException:
         return None
-    print("\nBillionaire Data Processing:")
-    for result in results:
-        wealth = result["finalWorth"]
-        fortune = int(float(wealth) * 1000000)
-        dict[result["personName"]] = fortune
-    print(dict)
-    return dict
+    # Parse response
+    try:
+        results = response.json()
+        for result in results:
+            wealth = result["finalWorth"]
+            fortune = int(float(wealth) * 1000000)
+            dict[result["personName"]] = fortune
+        return dict
+    except (KeyError, TypeError, ValueError):
+        return None
 
 
 def crypto_check():
@@ -64,30 +80,34 @@ def crypto_check():
     try:
         response = requests.get(url)
         response.raise_for_status()
-        results = response.json()
     except requests.RequestException:
         return None
-    print("\n Cryptocurrency Data Processing:")
-    for result in results["data"]:
-        cap = result["market_cap_usd"]
-        total = round(float(cap))
-        dict[result["name"]] = total
-    print(dict)
-    return dict
+    # Parse response
+    try:
+        results = response.json()
+        for result in results["data"]:
+            cap = result["market_cap_usd"]
+            total = round(float(cap))
+            dict[result["name"]] = total
+        return dict
+    except (KeyError, TypeError, ValueError):
+        return None
 
 
-master_dictionary = {}
+payload = {}
 stock_caps = {}
 billionaires = {}
 cryptos = {}
 
-print(stocks)
 # Look up current stock price to get accurate marketcap valuations
 for symbol in stocks:
-    m_cap = stock_check(symbol)
+    # IEX Stock data for market caps returns odd values for Google
+    if symbol == "GOOG":
+        m_cap = google_check(symbol)
+    else:
+        m_cap = stock_check(symbol)
     # creates new dictionary with {company name: market cap}
     stock_caps[stocks[symbol]] = m_cap[symbol]
-print(stock_caps)
 
 # Look up current net worth of top 10 billionaires
 billionaires = billionaire_check()
@@ -95,14 +115,34 @@ billionaires = billionaire_check()
 # Look up current market cap for top 5 cryptocurrencies
 cryptos = crypto_check()
 
-master_dictionary = countries | man_made | stock_caps | billionaires | cryptos
+payload = stock_caps | billionaires | cryptos
 
-# Testing for heroku run/update process
-master_dictionary["random_number"] = random_num
-print(f"Random num: {random_num}")
-print(master_dictionary["random_number"])
-print("INNER dictionary")
-print(master_dictionary)
+# Test whether main.py receives updated table info
+payload["random_num"] = random_num
+
+# Clear table values
+try:
+    num_rows_deleted = db.session.query(Marketdata).delete()
+    db.session.commit()
+except:
+    db.session.rollback()
+
+# Create table objects from payload to batch update Marketdata
+objects = []
+for key in payload:
+    objects.append(Marketdata(name=key, value=payload[key], timestamp=timestamp))
+
+db.bulk_save_objects(objects)
+db.commit()
+
+
+# Batch update without deleting rows option
+# Problems arise if a new entry comes along (new billionaire/crypto)
+# db.query(Marketdata).filter(Marketdata.name.in_(payload)).update(
+#     {Marketdata.value: case(payload, value=Marketdata.col1,)})
+
+
+
 
 
 
