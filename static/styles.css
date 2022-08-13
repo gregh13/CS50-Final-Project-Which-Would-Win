@@ -1,13 +1,16 @@
-.margin-gh {
-    margin: 5% 11%;
+.blue-color {
+    background-color: #0d6efd;
 }
 .light-blue-color {
     background-color: #9ec5fe;
 }
-.blue-color {
-    background-color: #0d6efd;
+.margin-gh {
+    margin: 5% 11%;
 }
-
+.rounded-gh {
+    border-radius: 1rem!important;
+}
 .soft-white {
     background-color: #f8f9fa;
 }
+

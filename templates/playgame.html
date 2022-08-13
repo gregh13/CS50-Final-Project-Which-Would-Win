@@ -17,15 +17,15 @@
     </head>
     <body class = "light-blue-color">
     <br><br><br>
-        <div class="text-center soft-white margin-gh rounded">
-            <div class="text-center margin-gh">
-                <br><br>
+        <div class="text-center soft-white margin-gh rounded-gh">
+            <div class="text-center">
+                <br><br><br>
                 <h2> Which Would Win?</h2>
                 <br>
                 <br>
                 <br>
               <div class="row justify-content-around">
-                <div class="col-3">
+                <div class="col-5">
                     <form action="/playgame" method="post">
                         <h3>{{ choice1 }}</h3>
                         <input type="hidden" name="answer" value="{{ choice1 }}">
@@ -34,10 +34,10 @@
                         <input class="btn light-blue-color" type="submit" value="Select">
                     </form>
                 </div>
-                  <div class="col-3">
+                  <div class="col-2">
                       <h1>vs.</h1>
                   </div>
-                <div class="col-3">
+                <div class="col-5">
                     <form action="/playgame" method="post">
                         <h3>{{ choice2 }}</h3>
                         <input type="hidden" name="other" value="{{ choice1 }}">
