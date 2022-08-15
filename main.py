@@ -123,7 +123,7 @@ def index():
         return render_template("playgame.html", choice1=choice1, choice2=choice2,
                                score=score, f_con=f_con)
 
-    # might need to add .amount before .desc()
+    # Get request, grab highscores and display on homepage
     highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(10)
     return render_template("index.html", highscores=highscores)
 
@@ -184,6 +184,16 @@ def savescore():
     timestamp = timestamp.strftime('%m/%d/%Y')
     score = session["score"]
     name = request.form.get("name")
+    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score).limit(15)
+
+    print("\nHIGHSCORES\n")
+    print(highscores[0])
+    print(highscores[-1])
+
+    if score < highscores[0]:
+        print("Don't Add!")
+    else:
+        print("Add")
     if not name:
         # Means client side changed 'required' in input html
         name = "Nooblet"
