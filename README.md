@@ -1,5 +1,5 @@
 # Which Would Win?
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/TJJvPLUTMQs
 #### Description:
 TLDR; A simple, responsive web-hosted (Heroku) game in which players are given two choices and must select the one that is 'worth more'.
 
