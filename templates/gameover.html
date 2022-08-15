@@ -23,22 +23,25 @@
         <div class="text-center soft-white margin-gh rounded-gh">
             <div class="text-center" style="margin: 0 7%;">
                 <br>
-                <br>
+                <div class="br-padding"></div>
                 <h3>Final Score: {{ score }}</h3>
                 <br>
                <div class="margin-gh">
                    <form class="row" action="/savescore" method="post">
-                        <div class="col-auto" style="padding-left: 25%;">
+                        <div class="col-auto save-padding">
                             <input class="form-control" name="name" type="text" placeholder="Name" required autofocus>
                         </div>
-                        <div class="col-auto">
+                        <div class="br-padding"></div>
+                        <div class="br-padding"></div>
+                        <div class="col-auto save-padding">
                             <input class="btn btn-primary input-bg" type="submit" value="Save Score">
                         </div>
                    </form>
                </div>
                 <br>
                 <hr>
-                <br><br>
+                <br>
+                <div class="br-padding"></div>
                   <div class="row justify-content-evenly" style="margin: 0 30%;">
                     <div class="col-6">
                       <a href="/"><button class="btn btn-primary">Back to Home</button></a>
@@ -49,7 +52,9 @@
                        </form>
                     </div>
                   </div>
-                <br><br>
+                <div class="br-padding"></div>
+                <div class="br-padding"></div>
+
             </div>
             <br><br>
         </div>

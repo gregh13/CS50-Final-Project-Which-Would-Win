@@ -7,10 +7,46 @@
 .margin-gh {
     margin: 5% 11%;
 }
+.margin-gh-table {
+    margin: 5% 11%;
+}
+.margin-wide {
+    margin: 0% 22%;
+}
 .rounded-gh {
-    border-radius: 2.2rem!important;
+    border-radius: 1.8rem!important;
 }
 .soft-white {
     background-color: #f8f9fa;
+}
+.br-padding {
+    padding-top: 19px;
+}
+.save-padding {
+    padding-left: 25%;
+}
+.save-margin {
+    margin: 0 30%;
+}
+
+@media (max-width: 420px) {
+    .margin-gh-ex {
+        margin: 5% 6%;
+    }
+    .margin-wide {
+        margin: 0% 0%;
+    }
+    .margin-play {
+        margin: 0 2%;
+    }
+    play-padding {
+        padding: 2px;
+    }
+    .br-padding {
+        padding-top: 0px;
+    }
+    .save-margin {
+        margin: 0 0%;
+    }
 }
 
