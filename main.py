@@ -184,13 +184,13 @@ def savescore():
     timestamp = timestamp.strftime('%m/%d/%Y')
     score = session["score"]
     name = request.form.get("name")
-    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score).limit(15)
+    highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(15)
 
     print("\nHIGHSCORES\n")
     print(highscores[0])
     print(highscores[-1])
 
-    if score < highscores[0]:
+    if score < highscores[-1][0]:
         print("Don't Add!")
     else:
         print("Add")
