@@ -17,6 +17,9 @@ body {
 .margin-wide {
     margin: 0% 22%;
 }
+.margin-play {
+    margin: 0% 7%;
+}
 .rounded-gh {
     border-radius: 1.8rem!important;
 }
