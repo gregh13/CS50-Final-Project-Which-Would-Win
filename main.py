@@ -187,9 +187,9 @@ def savescore():
     highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(15)
 
     print("\nHIGHSCORES\n")
-    print(highscores[0])
     print(highscores[-1])
-    lowest = int(highscores[-1][0])
+    print(type(highscores[-1][1]))
+    lowest = int(highscores[-1][1])
 
     if score < lowest:
         print("Don't Add!")
