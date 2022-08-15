@@ -37,7 +37,7 @@
                         <input type="hidden" name="other" value="{{ choice2 }}">
                         <input type="hidden" name="f_con" value="{{ f_con + 1 }}">
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Select">
+                        <input class="btn btn-primary submit" type="submit" value="Select">
                     </form>
                 </div>
                   <div class="col-2 play-padding">
@@ -50,7 +50,7 @@
                         <input type="hidden" name="answer" value="{{ choice2 }}">
                         <input type="hidden" name="f_con" value="{{ f_con + 1}}">
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Select">
+                        <input class="btn btn-primary submit" type="submit" value="Select">
                     </form>
                 </div>
               </div>
@@ -63,4 +63,12 @@
         </div>
         <h5>Score: {{ score }}</h5>
     </body>
+    <script>
+        let buttons = document.querySelectorAll(".submit");
+        buttons.addEventListener('click', function() {
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+            }
+        };
+    </script>
 </html>
