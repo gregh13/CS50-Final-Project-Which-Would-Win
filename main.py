@@ -120,10 +120,8 @@ def index():
         choice2 = session["order"][session["counter"]]
         session["counter"] += 1
 
-        # For easier testing
-        return render_template("winner.html")
-        # return render_template("playgame.html", choice1=choice1, choice2=choice2,
-        #                        score=score, f_con=f_con)
+        return render_template("playgame.html", choice1=choice1, choice2=choice2,
+                               score=score, f_con=f_con)
 
     # Get request, grab highscores and display on homepage
     highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(10)
