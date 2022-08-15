@@ -185,16 +185,13 @@ def savescore():
     score = session["score"]
     name = request.form.get("name")
     highscores = db.session.query(Highscores.name, Highscores.score).order_by(Highscores.score.desc()).limit(15)
-
-    print("\nHIGHSCORES\n")
-    print(highscores[-1])
-    print(type(highscores[-1][1]))
-    lowest = int(highscores[-1][1])
+    lowest = highscores[-1][1]
 
     if score < lowest:
-        print("Don't Add!")
-    else:
-        print("Add")
+        # Score is worse than the 15th highest score, not necessary to add to db as only top 10 scores show up
+        print("\nDidn't add\n")
+        return redirect("/")
+
     if not name:
         # Means client side changed 'required' in input html
         name = "Nooblet"
@@ -206,7 +203,7 @@ def savescore():
                            )
     db.session.add(new_score)
     db.session.commit()
-
+    print("\nAdded!\n")
     return redirect("/")
 
 
