@@ -51,17 +51,17 @@ stocks = {
 # List of 10 insanely expensive man-made objects/projects
 man_made = {
     "US Interstate Highway System": 535000000000,
-    "Great Wall of China (Estimate)": 260000000000,
+    "Great Wall of China": 260000000000,
     "International Space Station": 160000000000,
     "50 B-2 Stealth Bombers": 105000000000,
     "5 of the Most Expensive Aircraft Carrier": 65000000000,
     "200,000 Lambos": 60000000000,
     "30 Burj Khalifas": 45000000000,
     "Most Expensive Airport (Osaka, Japan)": 29000000000,
-    "All of the Royal Caribbean Cruise Ships": 25000000000,
-    "The Channel Tunnel (UK<-->FR)": 22400000000,
+    "All of Royal Caribbean's Cruise Ships": 25000000000,
+    "The Channel Tunnel": 22400000000,
     "Largest Diamond Mine Reserve Valuation": 604000000000,
     "1 Trillion Slices of Kraft Singles Cheese": 208300000000,
     "All of United Airlines Airplanes": 108000000000,
-    "100 Million Years of Netflix Subscription": 37176000000
+    "100 Million Years of Netflix": 37176000000
 }
