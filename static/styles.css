@@ -22,6 +22,9 @@
 .br-padding {
     padding-top: 19px;
 }
+.br-padding-reverse {
+    padding-top: 0px;
+}
 .save-name-padding {
     padding-left: 22%;
     padding-bottom: 0%;
@@ -53,6 +56,9 @@
     }
     .br-padding {
         padding-top: 0px;
+    }
+    .br-padding-reverse {
+        padding-top: 19px;
     }
     .save-margin {
         margin: 0 0%;
