@@ -68,7 +68,9 @@
         let buttons = document.querySelectorAll('.submit');
         for (let i = 0; i < forms.length; i++) {
             forms[i].addEventListener('submit', function() {
-                buttons[i].disabled = true;
+                for (let j = 0; j < buttons.length; j++) {
+                    buttons[j].disabled = true;
+                }
             });
         }
     </script>
