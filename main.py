@@ -42,32 +42,6 @@ class Marketdata(db.Model):
 
 db.create_all()
 
-# Debugging mode, temporarily allow hard-code dictionary.
-# master_dictionary = {
-#     'Japan': 4912150000000, 'Germany': 4256540000000, 'United Kingdom': 3376000000000, 'India': 3534740000000,
-#     'France': 2936700000000, 'Italy': 2058330000000, 'Brazil': 1833270000000, 'Canada': 2221220000000,
-#     'Russia': 1829050000000, 'Korea': 1804680000000, 'Ireland': 516146000000, 'Greece': 222770000000,
-#     'Kenya': 114679000000, 'Croatia': 69459000000, 'Nepal': 36315000000, 'Cambodia': 28020000000,
-#     'Iceland': 27865000000, 'Jamaica': 15721000000, 'Mongolia': 18102000000, 'Maldives': 5502000000,
-#     'US Interstate Highway System': 535000000000, 'Great Wall of China (Estimate)': 260000000000,
-#     'International Space Station': 160000000000, '50 B-2 Stealth Bombers': 105000000000,
-#     '5 of the Most Expensive Aircraft Carrier': 65000000000, '200,000 Lambos': 60000000000,
-#     '30 Burj Khalifas (Tallest Building)': 45000000000, 'Most Expensive Airport (Osaka, Japan)': 29000000000,
-#     'ALL of the Royal Caribbean Cruise Ships': 25000000000, 'The Channel Tunnel (UK<-->FR)': 22400000000,
-#     "Largest Diamond Mine (By Reserve)": 604000000000, "1 Trillion Slices of Kraft Singles Cheese": 208300000000,
-#     "ALL of United Airlines Airplanes": 108000000000, "100 Million Years of Netflix Subscription": 37176000000,
-#     'Apple': 2707761004480, 'Microsoft': 2140564125101, 'Google': 80898990179, 'Amazon': 1432777709604,
-#     'Tesla': 898146518998, 'Meta Platforms': 506556482719, 'Visa': 465220320000, 'Exxon Mobil': 388382026331,
-#     'Coca-Cola': 273403056380, 'McDonald': 190756774025, 'AT&T': 128553040000, 'Netflix': 107223648442,
-#     'Starbucks': 100133598000, 'Target': 78642911645, 'Airbnb': 73197432000, 'Ford': 62518771547, 'Dell': 34462400000,
-#     'Zoom': 30905917284, "Kellog's": 25680000000, "American Airlines": 9740000000, 'Elon Musk': 255940425000,
-#     'Bernard Arnault & family': 174656024000, 'Jeff Bezos': 165114752000,
-#     'Gautam Adani & family': 130849543000, 'Bill Gates': 113133936000, 'Larry Ellison': 106393052000,
-#     'Warren Buffett': 102948495000, 'Larry Page': 101384351000, 'Sergey Brin': 98284195000,
-#     'Mukesh Ambani': 95705176000, 'Bitcoin': 457507207036, 'Ethereum': 229595181591, 'Tether': 66110192252,
-#     'USD Coin': 54252182355, 'Binance Coin': 53809039092
-# }
-
 master_dictionary = countries | man_made
 
 
@@ -95,9 +69,12 @@ def index():
         # Start Game
         order = []
         list_length = len(master_dictionary)
+
         # Since questions require two choices, if list length is odd, take off one for more accurate counter check
         if list_length % 2 != 0:
             list_length -= 1
+
+        # Initialize session variables
         session["list_length"] = list_length
         session["counter"] = 0
         session["score"] = 0
@@ -134,11 +111,11 @@ def playgame():
         # Get users score
         score = session["score"]
 
-        # Protects against using back button in browser to cheat
+        # Protects against using back button in browser
         if session["gameover"] == "true":
             return render_template("gameover.html", score=score)
 
-        # Check users answers and form_controller
+        # Check users answers and form_controller (prevents multiple submission increase score bug)
         answer = request.form.get("answer")
         other = request.form.get("other")
         f_con = int(request.form.get("f_con"))
@@ -170,11 +147,10 @@ def playgame():
             session["counter"] += 1
             return render_template("playgame.html", choice1=choice1, choice2=choice2,
                                    score=score, f_con=f_con)
-
         # Wrong Answer
         session["gameover"] = "true"
         return render_template("gameover.html", score=score)
-
+    print("GET REQUEST")
     return render_template("playgame.html")
 
 
