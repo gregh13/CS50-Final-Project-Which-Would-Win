@@ -189,7 +189,6 @@ def savescore():
 
     if score < lowest:
         # Score is worse than the 15th highest score, not necessary to add to db as only top 10 scores show up
-        print("\nDidn't add\n")
         return redirect("/")
 
     if not name:
@@ -203,7 +202,7 @@ def savescore():
                            )
     db.session.add(new_score)
     db.session.commit()
-    print("\nAdded!\n")
+
     return redirect("/")
 
 
