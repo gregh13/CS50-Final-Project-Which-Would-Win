@@ -70,5 +70,11 @@
                 buttons[i].disabled = true;
             }
         });
+        let buttons = document.querySelectorAll(".submit");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons.addEventListener('click', function() {
+                buttons[i].disabled = true;
+            });
+        }
     </script>
 </html>

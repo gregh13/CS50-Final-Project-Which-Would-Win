@@ -189,8 +189,9 @@ def savescore():
     print("\nHIGHSCORES\n")
     print(highscores[0])
     print(highscores[-1])
+    lowest = int(highscores[-1][0])
 
-    if score < highscores[-1][0]:
+    if score < lowest:
         print("Don't Add!")
     else:
         print("Add")
