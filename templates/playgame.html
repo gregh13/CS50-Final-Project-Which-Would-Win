@@ -64,9 +64,10 @@
         <h5>Score: {{ score }}</h5>
     </body>
     <script>
-        let buttons = document.querySelectorAll(".submit");
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener('click', function(e) {
+        let forms = document.querySelectorAll('form');
+        let buttons = document.querySelectorAll('.submit');
+        for (let i = 0; i < forms.length; i++) {
+            forms[i].addEventListener('submit', function() {
                 buttons[i].disabled = true;
             });
         }
