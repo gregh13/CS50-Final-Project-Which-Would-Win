@@ -1,6 +1,18 @@
 body {
     font-family: 'Nunito', sans-serif;
 }
+
+/* Classes */
+.br-padding {
+    padding-top: 19px;
+}
+.br-padding-reverse {
+    padding-top: 0px;
+}
+.col-special {
+    flex: 0 0 auto;
+    width: 50%;
+}
 .light-blue-color {
     background-color: #9ec5fe;
 }
@@ -19,14 +31,8 @@ body {
 .rounded-gh {
     border-radius: 1.8rem!important;
 }
-.soft-white {
-    background-color: #f8f9fa;
-}
-.br-padding {
-    padding-top: 19px;
-}
-.br-padding-reverse {
-    padding-top: 0px;
+.save-margin {
+    margin: 0 30%;
 }
 .save-name-padding {
     padding-left: 22%;
@@ -36,32 +42,44 @@ body {
 .save-score-padding {
     padding-left: 0%;
 }
-.save-margin {
-    margin: 0 30%;
-}
-.col-special {
-    flex: 0 0 auto;
-    width: 50%;
+.soft-white {
+    background-color: #f8f9fa;
 }
 
+
+/* Mobile Viewing */
 @media (max-width: 420px) {
-    .margin-gh-ex {
-        margin: 5% 6%;
-    }
-    .margin-wide {
-        margin: 0% 0%;
-    }
-    .margin-play {
-        margin: 0 2%;
-    }
-    play-padding {
-        padding: 2px;
-    }
     .br-padding {
         padding-top: 0px;
     }
     .br-padding-reverse {
         padding-top: 19px;
+    }
+    .btn-lg {
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+    }
+    .col-special {
+        flex: 0 0 auto;
+        width: 33.33333333%;
+    }
+    .form-control-lg {
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+    }
+    .margin-gh-ex {
+        margin: 5% 6%;
+    }
+    .margin-play {
+        margin: 0 2%;
+    }
+    .margin-wide {
+        margin: 0% 0%;
+    }
+    play-padding {
+        padding: 2px;
     }
     .save-margin {
         margin: 0 0%;
@@ -69,20 +87,6 @@ body {
     .save-name-padding {
         padding-left: 0%;
         padding-bottom: 8%;
-    }
-    .col-special {
-        flex: 0 0 auto;
-        width: 33.33333333%;
-    }
-    .btn-lg {
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        border-radius: 0.25rem;
-    }
-    .form-control-lg {
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        border-radius: 0.25rem;
     }
 }
 
