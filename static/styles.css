@@ -1,12 +1,10 @@
+/*Old blue: #9ec5fe */
+
 body {
     font-family: 'Nunito', sans-serif;
 }
-
-.blue-color {
-    background-color: #0d6efd;
-}
 .light-blue-color {
-    background-color: #9ec5fe;
+    background-color: #CCE5FF;
 }
 .margin-gh {
     margin: 5% 11%;
