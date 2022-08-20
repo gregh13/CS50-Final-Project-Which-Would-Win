@@ -48,7 +48,7 @@ stocks = {
     "K": "Kellog's",
     "AAL": "American Airlines"}
 
-# List of 10 insanely expensive man-made objects/projects
+# List of insanely expensive man-made objects/projects
 man_made = {
     "US Interstate Highway System": 535000000000,
     "Great Wall of China": 260000000000,
@@ -63,5 +63,6 @@ man_made = {
     "Largest Diamond Mine Reserve Valuation": 604000000000,
     "1 Trillion Slices of Kraft Singles Cheese": 208300000000,
     "All of United Airlines Airplanes": 108000000000,
-    "100 Million Years of Netflix": 37176000000
+    "100 Million Years of Netflix": 37176000000,
+    "The 10 Most Expensive Nuclear Power Plants Combined": 229000000000,
 }
